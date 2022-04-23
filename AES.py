@@ -1,5 +1,6 @@
 # AES 256 encryption/decryption using pycrypto library
-# AS OF PYTHON3.8 time.clock() was removed.  THSI MEANS REPLACE THE RNG GENERATOR WITH time.perf_count()
+#AS OF PYTHON3.8 time.clock() was removed.  THSI MEANS REPLACE THE RNG GENERATOR WITH time.perf_count()
+ 
 import base64
 import hashlib
 from Crypto.Cipher import AES
