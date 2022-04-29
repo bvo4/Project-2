@@ -153,7 +153,7 @@ print(simon_plaintext)
 # THREEFISH - 1024
 from skein import threefish
 import geesefly
-
+geesefly.Threefish512
 t = threefish(b'key of 32,64 or 128 bytes length', b'tweak: 16 bytes ')
 c = t.encrypt_block(b'block of data,same length as key')
 t.decrypt_block(c)
