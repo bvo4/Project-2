@@ -107,6 +107,9 @@ export default function App() {
   }
 
 
+  // MORE FEATURES:
+  // add logic to go back (go back to parent node)
+  // add logic to start over
   function renderButtons() {
     let terminal = questionsList[questionPtr].terminal;
     if (terminal) {
