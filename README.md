@@ -50,6 +50,7 @@ cd Project-2/webinterface
 Then, install the required files by running the command:
 ```
 npm i
+npm i --save-dev css-loader
 ```
 
 ## Running the Website
