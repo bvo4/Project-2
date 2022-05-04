@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import "./App.css"
 
 // Watch the Button tutorial
 // http://react.school/ui/button
@@ -31,8 +32,10 @@ const Button = styled.button`
   outline: 0;
   text-transform: uppercase;
   display: flex;
-   flexDirection: 'row',
-   alignItems: 'center' //This will center you button
+  flexDirection: 'row';
+  alignItems: 'center'; //This will center your button
+  marginLeft: 20;
+  justifyContent: 'space-evenly';
   margin: 10px 0px;
   cursor: pointer;
   box-shadow: 0px 2px 2px lightgray;
@@ -79,7 +82,6 @@ const Tab = styled.button`
 `;
 
 
-
 export default function App() {
   // make terminal flag
   const [questionsList, setQuestionsList] = useState([
@@ -114,35 +116,40 @@ export default function App() {
     }
     else {
       return (
-        <div class="btnDiv">
+	  
+        <div class="btnDiv my-btn-group">
+            <div class = "demo">
+				<span>
+					<Button onClick={() => updateQuestion(true)}>Yes</Button>
+				</span>
+			</div>
             <div>
-            <Button onClick={() => updateQuestion(true)}>Yes</Button>
-            </div>
-            <div>
-            <Button theme="pink" onClick={() => updateQuestion(false)}>
-              No
-            </Button>
+				<span>
+				<Button theme="pink" onClick={() => updateQuestion(false)}>
+				  No
+				</Button>
+			</span>
           </div>
-          </div>
+        </div>
       )
     }
   }
 
   return (
-  <>
-    <h1>
+  <div class = "outer">
+    <h1 style={{textAlign: "center"}}>
     CS6903 Project
     </h1>
     
-    <body>
+    <body style={{textAlign: "center"}}>
     Here is where the questions regarding to what cryptographic primitve you want will be asked.
     </body>
     
-    <p>
+    <p style={{textAlign: "center"}}><strong>
       {questionsList[questionPtr].question}
-    </p>
+    </strong></p>
     
     {renderButtons()}
-  </>
+  </div>
   );
 }
