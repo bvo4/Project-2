@@ -52,6 +52,7 @@ Then, install the required files by running the command:
 npm i
 npm i --save-dev css-loader
 npm i --save-dev style-loader
+npm i react-native
 ```
 
 ## Running the Website
