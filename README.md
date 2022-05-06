@@ -4,6 +4,8 @@ All resource and code displayed here are down primarily to show what resources w
 
 The web page implementation was done on a separate Git Repo Located Here:  https://github.com/bvo4/bvo4.github.io
 
+To use the decision tree generator, access is located on this link:  https://colab.research.google.com/drive/1Lqleeot7ubQH8LUeD7cxZ0wVi2PEmT90?usp=sharing
+
 To view the full implementation of the Q&A Interface, visit the github page here:  https://bvo4.github.io/CS6903ProjectSite/
 
 Documentation Link:  https://docs.google.com/document/d/16IrAHuETq-MkEepGNEEcd8zJ5tZzzAioAa2U2hmgM2Q/edit?usp=sharing
