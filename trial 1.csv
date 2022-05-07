@@ -1,0 +1,28 @@
+Question1,Question2,Question3,Question4,Question5,Question6,,,,Scheme
+Old,,Are you encrypting data on a,,,,,,,
+over modern and experimental?,Widely Supported?,resource-constrained device?,Security over Speed?,Simple or Complex,Are you fine with high memory usage?,,,,
+Yes,No,No,Security,Simple,Yes,,,,Triple DES
+Yes,No,No,Security,Simple,Yes,,,,Triple DES
+Yes,Yes,No,Security,Complex,No,,,,Triple DES
+Yes,Yes,Yes,Security,Complex,Yes,,,,Triple DES
+Yes,No,Yes,Security,Complex,Yes,,,,Triple DES
+Yes,Yes,Yes,Speed,Simple,No,,,,AES
+Yes,Yes,No,Speed,Simple,Yes,,,,AES
+Yes,No,No,Speed,Simple,No,,,,AES
+Yes,Yes,Yes,Security,Simple,Yes,,,,AES
+Yes,Yes,No,Security,Simple,Yes,,,,AES
+Yes,No,No,Security,Simple,No,,,,AES
+No,Yes,Yes,Security,Complex,No,,,,IDEA
+No,No,Yes,Security,Complex,Yes,,,,IDEA
+No,Yes,Yes,Security,Complex,Yes,,,,IDEA
+No,No,Yes,Security,Complex,Yes,,,,IDEA
+No,No,Yes,Security,Complex,No,,,,IDEA
+No,Yes,Yes,Security,Simple,No,,,,SIMON
+No,Yes,Yes,Security,Simple,No,,,,SIMON
+No,Yes,Yes,Speed,Simple,Yes,,,,SIMON
+No,No,No,Speed,Simple,Yes,,,,SIMON
+No,No,No,Security,Simple,No,,,,SIMON
+No,No,No,Security,Complex,Yes,,,,Threefish
+No,No,Yes,Security,Complex,Yes,,,,Threefish
+No,No,No,Speed,Complex,Yes,,,,Threefish
+No,No,Yes,Speed,Complex,Yes,,,,Threefish

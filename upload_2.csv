@@ -1,0 +1,6 @@
+Age,Memory,Constraint,Security,Simple,Usage,Scheme
+Yes,No,No,Security,Simple,Yes,Triple DES
+Yes,Yes,Yes,Speed,Simple,No,AES
+No,Yes,Yes,Security,Complex,No,IDEA
+No,Yes,Yes,Security,Simple,No,SIMON
+No,No,No,Security,Complex,Yes,Threefish

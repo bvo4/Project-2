@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import "./App.css"
 
 // Watch the Button tutorial
 // http://react.school/ui/button
@@ -31,8 +32,10 @@ const Button = styled.button`
   outline: 0;
   text-transform: uppercase;
   display: flex;
-   flexDirection: 'row',
-   alignItems: 'center' //This will center you button
+  flexDirection: 'row';
+  alignItems: 'center'; //This will center your button
+  marginLeft: 20;
+  justifyContent: 'space-evenly';
   margin: 10px 0px;
   cursor: pointer;
   box-shadow: 0px 2px 2px lightgray;
@@ -49,9 +52,6 @@ Button.defaultProps = {
   theme: "blue"
 };
 
-function clickMe() {
-  alert("Do Python Stuff");
-}
 
 const ButtonToggle = styled(Button)`
   opacity: 0.7;
@@ -81,31 +81,75 @@ const Tab = styled.button`
   `}
 `;
 
+
 export default function App() {
+  // make terminal flag
+  const [questionsList, setQuestionsList] = useState([
+    {question: 'test0', terminal: false},
+    {question: 'test1', terminal: false},
+    {question: 'test2', terminal: false},
+    {question: 'test3', terminal: true},
+    {question: 'test4', terminal: true},
+    {question: 'test5', terminal: true},
+    {question: 'test6', terminal: true},
+
+  ]);
+  const [questionPtr, setQuestionPtr] = useState(0);
+
+  function updateQuestion(selection) {
+    var new_ptr;
+    if (selection) {
+      new_ptr = 2*questionPtr + 1
+    }
+    else {
+      new_ptr = 2*questionPtr + 2
+    }
+    
+    setQuestionPtr(new_ptr);
+  }
+
+
+  function renderButtons() {
+    let terminal = questionsList[questionPtr].terminal;
+    if (terminal) {
+      return (<div />) // add div for final answer
+    }
+    else {
+      return (
+	  
+        <div class="btnDiv my-btn-group">
+            <div class = "demo">
+				<span>
+					<Button onClick={() => updateQuestion(true)}>Yes</Button>
+				</span>
+			</div>
+            <div>
+				<span>
+				<Button theme="pink" onClick={() => updateQuestion(false)}>
+				  No
+				</Button>
+			</span>
+          </div>
+        </div>
+      )
+    }
+  }
+
   return (
-    <>
-	<h1>
-	CS6903 Project
-	</h1>
-	
-	<body>
-	Here is where the questions regarding to what cryptographic primitve you want will be asked.
-	</body>
-	
-	<p>
-	INSERT QUESTION HERE
-	</p>
-	
-	<div class="btnDiv">
-		  <div>
-			<Button onClick={clickMe}>Yes</Button>
-		  </div>
-		  <div>
-			<Button theme="pink" onClick={clickMe}>
-			  No
-			</Button>
-		</div>
-	  </div>
-    </>
+  <div class = "outer">
+    <h1 style={{textAlign: "center"}}>
+    CS6903 Project
+    </h1>
+    
+    <body style={{textAlign: "center"}}>
+    Here is where the questions regarding to what cryptographic primitve you want will be asked.
+    </body>
+    
+    <p style={{textAlign: "center"}}><strong>
+      {questionsList[questionPtr].question}
+    </strong></p>
+    
+    {renderButtons()}
+  </div>
   );
 }

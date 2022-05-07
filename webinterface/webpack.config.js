@@ -60,19 +60,26 @@ module.exports={
          */
         extensions: ['.js','.jsx','.json'] 
     },
-    module:{
-        /** "rules"
-         * This says - "Hey webpack compiler, when you come across a path that resolves to a '.js or .jsx' 
-         * file inside of a require()/import statement, use the babel-loader to transform it before you 
-         * add it to the bundle. And in this process, kindly make sure to exclude node_modules folder from 
-         * being searched"
-         */
-        rules: [
-            {
-                test: /\.(js|jsx)$/,    //kind of file extension this rule should look for and apply in test
-                exclude: /node_modules/, //folder to be excluded
-                use:  'babel-loader' //loader which we are going to use
-            }
+  module: {
+    rules: [
+      {
+        // this is so that we can compile any React,
+        // ES6 and above into normal ES5 syntax
+        test: /\.(js|jsx)$/,
+        // we do not want anything from node_modules to be compiled
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader"
+        }
+      },
+      {
+        test: /\.(css)$/,
+        use: [
+          "style-loader", // creates style nodes from JS strings
+          "css-loader", // translates CSS into CommonJS
         ]
-    }
+      }
+    ]
+  },
+	
 }
