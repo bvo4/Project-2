@@ -15,3 +15,10 @@ div.demo span {
     display:table-cell;
     text-align:center;
 }
+
+.width{
+	width:50%;
+	display: inline-block;
+    text-align:center;
+	display:table-cell;
+}
