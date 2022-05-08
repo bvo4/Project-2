@@ -4,7 +4,7 @@
 
     ```shell
     $ node --version
-    v8.6.0
+    v18.0.0
 
     $ npm --version
     8.6.0
