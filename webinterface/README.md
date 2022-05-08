@@ -56,8 +56,6 @@ npm i babel-loader
 npm i --save-dev css-loader
 npm i --save-dev style-loader
 npm i react-native
-npm i classnames
-npm install react-transition-group --save
 
 ```
 
