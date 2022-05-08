@@ -8,8 +8,6 @@ from Crypto.Random import get_random_bytes
 from base64 import b64decode
 from Crypto.Cipher import AES
 from Crypto.Util.Padding import unpad
-import sys
-import os
 import json
 import random 
 import string
@@ -78,9 +76,10 @@ def triple_des_scheme(data):
     end_time = datetime.now()
     t_des_dec.append(end_time-start_time)
 
-
 # IDEA CBC
 # Block is 8 bytes, key is 16 byte
+# https://www.nayuki.io/page/cryptographic-primitives-in-plain-python
+
 import ideacipher as ic
 ic_enc = []
 ic_dec = []
@@ -129,14 +128,6 @@ def simon_cipher(plains):
         end_time = datetime.now()
         sc_dec.append(end_time-start_time)
 
-def main():
-    for i in range(10):
-        data = ''.join([random.choice(string.ascii_letters + string.digits) for i in range(32)]).encode('utf-8')
-        aes_scheme(data)
-        triple_des_scheme(data)
-    idea_cipher(ic_plain, ic_key)
-    simon_cipher(simon_data)
-
 def average(lst):
     total = lst[0]
     for i in range(1, len(lst)):
@@ -156,37 +147,39 @@ def find_all():
     averages.append(average(sc_dec))
     return averages
 
+def main():
+    for i in range(10):
+        data = ''.join([random.choice(string.ascii_letters + string.digits) for i in range(32)]).encode('utf-8')
+        aes_scheme(data)
+        triple_des_scheme(data)
+    idea_cipher(ic_plain, ic_key)
+    simon_cipher(simon_data)
+
+    answers = find_all()
+    encryption = answers[0::2]
+    decryption = answers[1::2]
+    labels = ["AES", "Triple DES", "IDEA", "Simon"]
+
+    fig, ax = plt.subplots()
+    width = 0.35
+    x = np.arange(len(encryption))
+
+    ax.set_ylabel("Average operation in Microseconds")
+    ax.set_xlabel("Block Cipher")
+    ax.set_title("Average Encryption and Decryption Time for Block Cipher Schemes")
+
+    enc1 = ax.bar(x - width/2, encryption, width, label="Encryption")
+    enc2 = ax.bar(x + width/2, decryption, width, label="Decryption")
+    ax.set_xticks(x, labels)
+    ax.bar_label(enc1, padding=3)
+    ax.bar_label(enc2, padding=3)
+    ax.legend()
+    fig.tight_layout()
+
+    plt.show()
+
 main()
 
-answers = find_all()
-encryption = answers[0::2]
-decryption = answers[1::2]
-labels = ["AES", "Triple DES", "IDEA", "Simon"]
 
-fig, ax = plt.subplots()
-width = 0.35
-x = np.arange(len(encryption))
 
-ax.set_ylabel("Average operation in Microseconds")
-ax.set_xlabel("Block Cipher")
-ax.set_title("Average Encryption and Decryption Time for Block Cipher Schemes")
 
-enc1 = ax.bar(x - width/2, encryption, width, label="Encryption")
-enc2 = ax.bar(x + width/2, decryption, width, label="Decryption")
-ax.set_xticks(x, labels)
-ax.bar_label(enc1, padding=3)
-ax.bar_label(enc2, padding=3)
-ax.legend()
-fig.tight_layout()
-
-plt.show()
-
-"""
-# THREEFISH - 1024
-import skein
-import geesefly
-geesefly.Threefish512
-t = skein.threefish(b'key of 32,64 or 128 bytes length', b'tweak: 16 bytes ')
-c = t.encrypt_block(b'block of data,same length as key')
-t.decrypt_block(c)
-"""
