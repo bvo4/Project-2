@@ -25,7 +25,7 @@ Presentation Link:  https://docs.google.com/presentation/d/1zV1qWp1qsaZ9clOtOSEm
     $ npm --version
     8.6.0
     ```
-    > Installing npm adds two commands to the system—`npm` and `npx`—both of which I'll be using while making this tutorial.### GitHub
+    > Installing npm adds two commands to the system—`npm`.### GitHub
 You will need to have [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) installed on your machine and create a GitHub account that you will be able to log into.
 ### Python
 We used [Python](https://www.python.org/downloads/) version 3.9.12 installed on your machine. Check the version with the following command:
