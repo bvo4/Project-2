@@ -16,24 +16,24 @@ Presentation Link:  https://docs.google.com/presentation/d/1zV1qWp1qsaZ9clOtOSEm
 
 ## Prerequisites
 
-1. [Node and npm](https://nodejs.org/en/download/) are installed. Here are the versions I'll be using while making this tutorial:
+1. [Node and npm](https://nodejs.org/en/download/) are installed. Here are the versions I'm using:
 
     ```shell
     $ node --version
-    v16.13.2
+    v8.6.0
 
     $ npm --version
-    8.1.2
+    8.6.0
     ```
     > Installing npm adds two commands to the system—`npm` and `npx`—both of which I'll be using while making this tutorial.### GitHub
 You will need to have [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) installed on your machine and create a GitHub account that you will be able to log into.
 ### Python
-Ensure that you have [Python](https://www.python.org/downloads/) version 3.6.9 installed on your machine. Check the version with the following command:
+We used [Python](https://www.python.org/downloads/) version 3.9.12 installed on your machine. Check the version with the following command:
 ```
 python --version
 ```
 ### Node.js
-Ensure that you have [Node.js](https://nodejs.org/en/download/) version 12.10.0 installed on your machine. Check the version with the following command:
+Ensure that you have [Node.js](https://nodejs.org/en/download/) version 8.6.0 installed on your machine. Check the version with the following command:
 ```
 npm -v
 ```
@@ -45,7 +45,7 @@ The first step is to clone the repository from [GitHub](https://github.com/bvo4/
 https://github.com/bvo4/Project-2.git
 ```
 ### Install Client Dependencies
-Next you will need to install the libraries used on the frontend. To do this, navigate to the client folder using:
+Next you will need to install the libraries used on the frontend. To do this, navigate to the webinterface folder using:
 ```
 cd Project-2/webinterface
 ```
