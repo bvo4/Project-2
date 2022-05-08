@@ -50,6 +50,6 @@ class CipherTest(unittest.TestCase):
 			num_test_cases += 1
 
 if __name__ == "__main__":
-	num_test_cases: int = 1
+	num_test_cases: int = 9
 	unittest.main(exit=False)
 	print(f"Tested {num_test_cases} vectors")
