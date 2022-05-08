@@ -8,7 +8,7 @@ To use the decision tree generator, access is located on this link:  https://col
 
 To view the full implementation of the Q&A Interface, visit the github page here:  https://bvo4.github.io/CS6903ProjectSite/
 
-Documentation Link:  https://docs.google.com/document/d/16IrAHuETq-MkEepGNEEcd8zJ5tZzzAioAa2U2hmgM2Q/edit?usp=sharing
+Part 1 Documentation Link:  https://docs.google.com/document/d/16IrAHuETq-MkEepGNEEcd8zJ5tZzzAioAa2U2hmgM2Q/edit?usp=sharing
 
 Part 2 Documentation Link:  https://docs.google.com/document/d/1wMexGlowhvlHOqgJQdsEx_neFY_4jyh48NUh-p15AfA/edit?usp=sharing
 
