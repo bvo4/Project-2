@@ -1,70 +1,75 @@
-# Getting Started with Create React App
+# Project-2
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+All resource and code displayed here are down primarily to show what resources we, the libraries implemented, the decision tree algorithms we implemented and designed, and data sets we created and used to train our decision trees.  
 
-## Available Scripts
+The web page implementation was done on a separate Git Repo Located Here:  https://github.com/bvo4/bvo4.github.io
 
-In the project directory, you can run:
+To use the decision tree generator, access is located on this link:  https://colab.research.google.com/drive/1Lqleeot7ubQH8LUeD7cxZ0wVi2PEmT90?usp=sharing
 
-### `npm start`
+To view the full implementation of the Q&A Interface, visit the github page here:  https://bvo4.github.io/CS6903ProjectSite/
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Part 1 Documentation Link:  https://docs.google.com/document/d/16IrAHuETq-MkEepGNEEcd8zJ5tZzzAioAa2U2hmgM2Q/edit?usp=sharing
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Part 2 Documentation Link:  https://docs.google.com/document/d/1wMexGlowhvlHOqgJQdsEx_neFY_4jyh48NUh-p15AfA/edit?usp=sharing
 
-### `npm test`
+Presentation Link:  https://docs.google.com/presentation/d/1zV1qWp1qsaZ9clOtOSEmXB_l4ElH07hs9tHqbN3tKPU/edit?usp=sharing
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Prerequisites
 
-### `npm run build`
+1. [Node and npm](https://nodejs.org/en/download/) are installed. Here are the versions I'm using:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    ```shell
+    $ node --version
+    v8.6.0
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    $ npm --version
+    8.6.0
+    ```
+    > Installing npm adds two commands to the system—`npm`.### GitHub
+You will need to have [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) installed on your machine and create a GitHub account that you will be able to log into.
+### Python
+We used [Python](https://www.python.org/downloads/) version 3.9.12 installed on your machine. Check the version with the following command:
+```
+python --version
+```
+### Node.js
+Ensure that you have [Node.js](https://nodejs.org/en/download/) version 8.6.0 installed on your machine. Check the version with the following command:
+```
+npm -v
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Installation
+### Clone the Repository
+The first step is to clone the repository from [GitHub](https://github.com/bvo4/Project-2). You can do this manually from the link by downloading the files or you can run the following command:
+```
+git clone https://github.com/bvo4/Project-2.git
+```
+### Install Client Dependencies
+Next you will need to install the libraries used on the frontend. To do this, navigate to the webinterface folder using:
+```
+cd Project-2/webinterface
+```
+Then, install the required files by running the command:
+```
+npm i
+npm i babel-loader
+npm i --save-dev css-loader
+npm i --save-dev style-loader
+npm i react-native
+npm i classnames
+npm install react-transition-group --save
 
-### `npm run eject`
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Running the Website
+### Client
+After the installations are complete, run the following command to launch the frontend:
+```
+npm start
+```
+This will allow you to see the website at http://localhost:3000/CS6903ProjectSite, however this will not work properly until the backend is started in the following steps.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Viewing the Site
+To view the site, navigate to http://localhost:3000/CS6903ProjectSite.
+    
