@@ -64,9 +64,9 @@ After the installations are complete, run the following command to launch the fr
 ```
 npm start
 ```
-This will allow you to see the website at http://localhost:9500/, however this will not work properly until the backend is started in the following steps.
+This will allow you to see the website at http://localhost:3000/CS6903ProjectSite, however this will not work properly until the backend is started in the following steps.
 
 
 ## Viewing the Site
-To view the site, navigate to http://localhost:9500/.
+To view the site, navigate to http://localhost:3000/CS6903ProjectSite.
     
