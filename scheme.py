@@ -13,22 +13,18 @@ import os
 import json
 import random 
 import string
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
 
 # AES
 aes_enc = []
 aes_dec = []
 
-
-
 def aes_scheme(data):
-
-    #data = b"secret"
-    #print(data)
-
     start_time = datetime.now()
 
     key = get_random_bytes(16)
-    #print(key)
     cipher = AES.new(key, AES.MODE_CBC)
     ct_bytes = cipher.encrypt(pad(data, AES.block_size))
     iv = b64encode(cipher.iv).decode('utf-8')
@@ -46,7 +42,6 @@ def aes_scheme(data):
         ct = b64decode(b64['ciphertext'])
         cipher = AES.new(key, AES.MODE_CBC, iv)
         pt = unpad(cipher.decrypt(ct), AES.block_size)
-    #    print("The message was: ", pt)
     except (ValueError, KeyError):
         print("Incorrect decryption")
     end_time = datetime.now()
@@ -84,77 +79,26 @@ def triple_des_scheme(data):
     t_des_dec.append(end_time-start_time)
 
 
-"""
-found IDEA-CBC in cpp idk how to compile it
-https://www.cryptopp.com/wiki/IDEA
+# IDEA CBC
+# Block is 8 bytes, key is 16 byte
+import ideacipher as ic
+ic_enc = []
+ic_dec = []
+ic_key = bytes.fromhex("00010002000300040005000600070008")
+ic_plain = ["0000000100020003", "11FBED2B01986DE5", "F129A6601EF62A47", "1234567890123456", "F129A14B1EF6FA47"
+                "ABCD2EF123ADECBA", "AB3455DCFAB32432", "FADECA123DA890AC", "AABBCCDDEEFF1122", "2288080ADCEA8221"]
 
-No IDEA wtf this is 
+def idea_cipher(data, key):
+    for i in data:
+        start_time = datetime.now()
+        cipher_text = ic.encrypt(bytes.fromhex("0000000100020003"), key)
+        end_time = datetime.now()
+        ic_enc.append(end_time-start_time)
 
-https://cryptography.io/en/latest/development/custom-vectors/idea/?highlight=IDEA
-
-# IDEA
-import binascii
-
-from cryptography.hazmat.primitives.ciphers import algorithms, base, modes # Cannot find the source to this not on the github
-
-
-def encrypt(mode, key, iv, plaintext):
-    cipher = base.Cipher(
-        algorithms.IDEA(binascii.unhexlify(key)),
-        mode(binascii.unhexlify(iv)),
-    )
-    encryptor = cipher.encryptor()
-    ct = encryptor.update(binascii.unhexlify(plaintext))
-    ct += encryptor.finalize()
-    return binascii.hexlify(ct)
-
-
-def build_vectors(mode, filename):
-    with open(filename, "r") as f:
-        vector_file = f.read().splitlines()
-
-    count = 0
-    output = []
-    key = None
-    iv = None
-    plaintext = None
-    for line in vector_file:
-        line = line.strip()
-        if line.startswith("KEY"):
-            if count != 0:
-                output.append(
-                    "CIPHERTEXT = {0}".format(
-                        encrypt(mode, key, iv, plaintext)
-                    )
-                )
-            output.append("\nCOUNT = {0}".format(count))
-            count += 1
-            name, key = line.split(" = ")
-            output.append("KEY = {0}".format(key))
-        elif line.startswith("IV"):
-            name, iv = line.split(" = ")
-            iv = iv[0:16]
-            output.append("IV = {0}".format(iv))
-        elif line.startswith("PLAINTEXT"):
-            name, plaintext = line.split(" = ")
-            output.append("PLAINTEXT = {0}".format(plaintext))
-
-    output.append("CIPHERTEXT = {0}".format(encrypt(mode, key, iv, plaintext)))
-    return "\n".join(output)
-
-
-def write_file(data, filename):
-    with open(filename, "w") as f:
-        f.write(data)
-
-
-CBC_PATH = "tests/hazmat/primitives/vectors/ciphers/AES/CBC/CBCMMT128.rsp"
-write_file(build_vectors(modes.CBC, CBC_PATH), "idea-cbc.txt")
-OFB_PATH = "tests/hazmat/primitives/vectors/ciphers/AES/OFB/OFBMMT128.rsp"
-write_file(build_vectors(modes.OFB, OFB_PATH), "idea-ofb.txt")
-CFB_PATH = "tests/hazmat/primitives/vectors/ciphers/AES/CFB/CFB128MMT128.rsp"
-write_file(build_vectors(modes.CFB, CFB_PATH), "idea-cfb.txt")
-"""
+        start_time = datetime.now()
+        ic.decrypt(cipher_text, key)
+        end_time = datetime.now()
+        ic_dec.append(end_time-start_time)
 
 # SIMON
 # https://github.com/inmcm/Simon_Speck_Ciphers/tree/master/Python/simonspeckciphers
@@ -162,41 +106,74 @@ write_file(build_vectors(modes.CFB, CFB_PATH), "idea-cfb.txt")
 from simon import SimonCipher
 sc_enc = []
 sc_dec = []
-data = 0xCCCCAAAA555533332344325432524357
+simon_data = [0xCCCCAAAA555533332344325432524357, 0xBCDABDAA5555363323443D54325A4357, 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+       ,0x384956AB889C896F5213D54A567B012C, 0xADC748927890DD64324AC78989EF89FF, 0xAAAAAAAAAAAA9999999333333DDDEEEA
+       ,0x3232789F5456757AD5679CDAAAD55A42, 0xDDDDDADADADADADCDCDFFEACFABFBAFE, 0x9435728975904237543AADD890CDAAB8
+       ,0x23748907908789798FACBBADEBFDEA39]
 
-def simon_cipher(data):
-    start_time = datetime.now()
-    key = 0x525354
-    simon_iv = 0x999999
-    my_simon = SimonCipher(key, mode='CBC', init=simon_iv)
-    my_plaintext = data
-    simon_ciphertext = my_simon.encrypt(my_plaintext)
-    end_time = datetime.now()
-    sc_enc.append(end_time-start_time)
+def simon_cipher(plains):
+    for data in plains:
+        start_time = datetime.now()
+        key = 0x525354
+        simon_iv = 0x999999
+        my_simon = SimonCipher(key, mode='CBC', init=simon_iv)
+        my_plaintext = data
+        simon_ciphertext = my_simon.encrypt(my_plaintext)
+        end_time = datetime.now()
+        sc_enc.append(end_time-start_time)
 
-    start_time = datetime.now()
-    my_simon = SimonCipher(key, mode='CBC', init=simon_iv)
-    simon_plaintext = my_simon.decrypt(simon_ciphertext)
-    #print(simon_plaintext)
-    end_time = datetime.now()
-    sc_dec.append(end_time-start_time)
-
+        start_time = datetime.now()
+        my_simon = SimonCipher(key, mode='CBC', init=simon_iv)
+        simon_plaintext = my_simon.decrypt(simon_ciphertext)
+        #print(simon_plaintext)
+        end_time = datetime.now()
+        sc_dec.append(end_time-start_time)
 
 def main():
-    for i in range(20):
+    for i in range(10):
         data = ''.join([random.choice(string.ascii_letters + string.digits) for i in range(32)]).encode('utf-8')
         aes_scheme(data)
         triple_des_scheme(data)
+    idea_cipher(ic_plain, ic_key)
+    simon_cipher(simon_data)
+
+def average(lst):
+    total = lst[0]
+    for i in range(1, len(lst)):
+        total += lst[i]
+    ans = total/len(lst)
+    return round(ans.total_seconds()*1000, 4)
+
+def find_all():
+    averages = []
+    averages.append(average(aes_enc))
+    averages.append(average(aes_dec))
+    averages.append(average(t_des_enc))
+    averages.append(average(t_des_dec))
+    averages.append(average(ic_enc))
+    averages.append(average(ic_dec))
+    averages.append(average(sc_enc))
+    averages.append(average(sc_dec))
+    return averages
 
 main()
-print(aes_dec[0])
+labels = ["AES Encrypt", "AES Decrypt", "Triple DES Encrypt", "Triple DES Decrypt", "IDEA Encrypt", "IDEA Decrypt","Simon Encrypt","Simon Decrypt"]
+plt.ylabel("Average operation in Microseconds")
+plt.xlabel("Block Cipher")
+plt.title("Average Encryption and Decryption Time for Block Cipher Schemes")
+plt.bar(labels, find_all(), color=['green', 'green', 'blue', 'blue', 'red', 'red', 'orange', 'orange'])#, 'pink', 'pink'])
+plt.yticks([0,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4])
+plt.show()
+
+
+
+
 """
 # THREEFISH - 1024
-from skein import threefish
+import skein
 import geesefly
 geesefly.Threefish512
-t = threefish(b'key of 32,64 or 128 bytes length', b'tweak: 16 bytes ')
+t = skein.threefish(b'key of 32,64 or 128 bytes length', b'tweak: 16 bytes ')
 c = t.encrypt_block(b'block of data,same length as key')
 t.decrypt_block(c)
 """
-
