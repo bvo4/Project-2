@@ -157,16 +157,29 @@ def find_all():
     return averages
 
 main()
-labels = ["AES Encrypt", "AES Decrypt", "Triple DES Encrypt", "Triple DES Decrypt", "IDEA Encrypt", "IDEA Decrypt","Simon Encrypt","Simon Decrypt"]
-plt.ylabel("Average operation in Microseconds")
-plt.xlabel("Block Cipher")
-plt.title("Average Encryption and Decryption Time for Block Cipher Schemes")
-plt.bar(labels, find_all(), color=['green', 'green', 'blue', 'blue', 'red', 'red', 'orange', 'orange'])#, 'pink', 'pink'])
-plt.yticks([0,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4])
+
+answers = find_all()
+encryption = answers[0::2]
+decryption = answers[1::2]
+labels = ["AES", "Triple DES", "IDEA", "Simon"]
+
+fig, ax = plt.subplots()
+width = 0.35
+x = np.arange(len(encryption))
+
+ax.set_ylabel("Average operation in Microseconds")
+ax.set_xlabel("Block Cipher")
+ax.set_title("Average Encryption and Decryption Time for Block Cipher Schemes")
+
+enc1 = ax.bar(x - width/2, encryption, width, label="Encryption")
+enc2 = ax.bar(x + width/2, decryption, width, label="Decryption")
+ax.set_xticks(x, labels)
+ax.bar_label(enc1, padding=3)
+ax.bar_label(enc2, padding=3)
+ax.legend()
+fig.tight_layout()
+
 plt.show()
-
-
-
 
 """
 # THREEFISH - 1024
